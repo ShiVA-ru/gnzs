@@ -1,44 +1,58 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { ref } from 'vue'
+import AppDropdown from './components/AppDropdown.vue'
+import CButton from './components/CButton.vue'
+import EntityInfo from './components/EntityInfo.vue'
+
+const isSelected = ref(false)
+const isLoading = ref(false)
+const requestValue = ref('')
+const answerList = ref([{ name: '', id: 0 }])
+
+const handleSelect = (value: string) => {
+  if (value) isSelected.value = true
+  requestValue.value = value
+}
+
+const handleRequest = () => {
+  console.log(requestValue.value)
+  isLoading.value = true
+  setTimeout(() => {
+    isLoading.value = false
+    createAnswer(requestValue.value)
+  }, 2000)
+}
+
+const createAnswer = (value: string) => {
+  answerList.value.push({
+    id: 2,
+    name: value,
+  })
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
+  <main class="page-main">
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <AppDropdown placeholder="Не выбрано" @select="handleSelect" />
+      <CButton :disabled="!isSelected" :isLoading="isLoading" @click="handleRequest">
+        Сохранить
+      </CButton>
     </div>
-  </header>
 
-  <main>
-    <TheWelcome />
+    <EntityInfo :entities="answerList" />
   </main>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.page-main .wrapper {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 20px;
 }
 
 @media (min-width: 1024px) {
   header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
