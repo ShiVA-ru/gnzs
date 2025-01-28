@@ -13,35 +13,28 @@ defineProps({
   },
 })
 
-const isOpen = ref(false) // Состояние открытия/закрытия dropdown
-const selectedOption = ref('') // Выбранная опция
-// const dropdown = ref(null) // Ссылка на элемент dropdown
+const isOpen = ref(false)
+const selectedOption = ref('')
 
-// Функция для открытия/закрытия dropdown
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value
 }
 
-// Функция для закрытия dropdown
 const closeDropdown = () => {
   if (isOpen.value) {
     isOpen.value = false
   }
 }
 
-// Функция для выбора опции
 const selectOption = (option: { name: string; route: string }) => {
   selectedOption.value = option.name
   isOpen.value = false
   emit('select', option.route)
 }
-
-// Определяем emits
 </script>
 
 <template>
   <div class="dropdown" v-click-outside="closeDropdown">
-    <!-- Кнопка для открытия/закрытия dropdown -->
     <button
       @click="toggleDropdown"
       class="dropdown__toggle"
@@ -53,7 +46,6 @@ const selectOption = (option: { name: string; route: string }) => {
       </span>
     </button>
 
-    <!-- Список опций -->
     <ul v-if="isOpen" class="dropdown__menu">
       <li
         v-for="option in store.entities"
@@ -82,8 +74,8 @@ const selectOption = (option: { name: string; route: string }) => {
   padding: 10px 20px;
 
   font-size: 14px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  background-color: var(--color-background-soft);
+  border: 1px solid var(--color-border);
   border-right: none;
   border-radius: 5px 0 0 5px;
   cursor: pointer;
@@ -116,9 +108,9 @@ const selectOption = (option: { name: string; route: string }) => {
 
   font-size: 14px;
   list-style: none;
-  color: black;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  color: var(--color-text);
+  background-color: var(--color-background-soft);
+  border: 1px solid var(--color-border);
   border-radius: 0 0 5px 5px;
 }
 
@@ -130,7 +122,7 @@ const selectOption = (option: { name: string; route: string }) => {
 }
 
 .dropdown__item:hover {
-  background-color: blue;
-  color: white;
+  background-color: var(--color-background-accent);
+  color: var(--vt-c-white);
 }
 </style>

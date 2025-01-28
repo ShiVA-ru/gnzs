@@ -1,16 +1,9 @@
 <script lang="ts" setup>
-import { watch } from 'vue'
-
-// Определяем props
-const props = defineProps({
+defineProps({
   entities: {
     type: Array<{ name: string; id: number }>,
     required: true,
   },
-})
-
-watch(props.entities, () => {
-  console.log(props.entities)
 })
 </script>
 
@@ -36,7 +29,7 @@ watch(props.entities, () => {
   padding: 0;
 
   font-size: 14px;
-  color: #333;
+  color: var(--vt-c-indigo);
   list-style: none;
 
   @media (max-width: 767px) {
@@ -55,7 +48,7 @@ watch(props.entities, () => {
 .entity__item {
   padding: 10px;
   border-radius: 5px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 10px var(--vt-c-shadow-color);
 }
 
 .entity__name {

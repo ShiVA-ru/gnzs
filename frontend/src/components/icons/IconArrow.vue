@@ -1,12 +1,5 @@
 <template>
-  <svg
-    class="icon"
-    width="23"
-    height="14"
-    viewBox="0 0 23 14"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg class="icon" width="23" height="14" viewBox="0 0 23 14" xmlns="http://www.w3.org/2000/svg">
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"

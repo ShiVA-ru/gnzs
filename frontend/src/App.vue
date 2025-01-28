@@ -7,25 +7,27 @@ import EntityInfo from './components/EntityInfo.vue'
 const isSelected = ref(false)
 const isLoading = ref(false)
 const requestValue = ref('')
-const answerList = ref([{ name: '', id: 0 }])
+const requestList = ref<{ name: string; id: number }[]>([])
 
 const handleSelect = (value: string) => {
   if (value) isSelected.value = true
   requestValue.value = value
 }
 
-const handleRequest = () => {
-  console.log(requestValue.value)
+const handleRequest = async () => {
   isLoading.value = true
-  setTimeout(() => {
-    isLoading.value = false
-    createAnswer(requestValue.value)
-  }, 2000)
+  const response = await fetch('http://127.0.0.1:3000/' + requestValue.value, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+  })
+  const id = await response.json()
+  createAnswer(requestValue.value, id)
+  isLoading.value = false
 }
 
-const createAnswer = (value: string) => {
-  answerList.value.push({
-    id: 2,
+const createAnswer = (value: string, id: number) => {
+  requestList.value.push({
+    id: id,
     name: value,
   })
 }
@@ -40,7 +42,7 @@ const createAnswer = (value: string) => {
       </CButton>
     </div>
 
-    <EntityInfo :entities="answerList" />
+    <EntityInfo :entities="requestList" />
   </main>
 </template>
 

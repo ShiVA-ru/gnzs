@@ -25,13 +25,13 @@ defineProps({
   min-height: 100%;
   min-width: 120px;
 
-  color: white;
+  color: var(--vt-c-white);
   font-size: 14px;
   font-weight: bold;
   border: none;
   border-left: none;
   border-radius: 0 5px 5px 0;
-  background-color: blue;
+  background-color: var(--color-background-accent);
   cursor: pointer;
   transition:
     background-color 0.3s ease-in-out,
@@ -39,12 +39,12 @@ defineProps({
 
   &:disabled {
     opacity: 0.5;
-    background-color: grey;
+    background-color: var(--vt-c-black);
     cursor: not-allowed;
   }
   &:hover,
   &:focus {
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 5px 10px var(--vt-c-shadow-color);
   }
 }
 
@@ -52,9 +52,8 @@ defineProps({
   position: relative;
   min-height: 100%;
   width: 45px;
-  /* background-color: blue; */
   border-radius: 0 5px 5px 0;
-  background-color: lightgrey;
+  background-color: var(--color-border);
 
   &::after {
     content: '';
@@ -66,7 +65,7 @@ defineProps({
 
     width: 25px;
     height: 25px;
-    border: 2px solid blue;
+    border: 2px solid var(--vt-c-accent-color);
     border-radius: 50%;
     opacity: 0.5;
     border-bottom-color: transparent;

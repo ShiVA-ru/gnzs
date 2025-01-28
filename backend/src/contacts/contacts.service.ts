@@ -1,0 +1,34 @@
+import { Injectable } from '@nestjs/common';
+import config from 'config';
+import { ApiService } from 'src/api/api.service';
+import { AuthService } from 'src/auth/auth.service';
+
+@Injectable()
+export class ContactsService {
+  constructor(
+    private authService: AuthService,
+    private apiService: ApiService,
+  ) {}
+  async create() {
+    const accessToken = await this.authService.getAccessToken();
+
+    if (!accessToken) {
+      throw new Error('Failed to get access token');
+    }
+    const url = config.apiUrl + 'contacts';
+    try {
+      const response = await this.apiService.post(url, accessToken);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      return data._embedded.contacts[0].id;
+    } catch (error) {
+      console.error('Error creating company:', error);
+      throw error;
+    }
+  }
+}
