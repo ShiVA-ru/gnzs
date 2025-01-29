@@ -25,21 +25,24 @@ defineProps({
   min-height: 100%;
   min-width: 120px;
 
-  color: var(--vt-c-white);
   font-size: 14px;
   font-weight: bold;
-  border: none;
-  border-left: none;
-  border-radius: 0 5px 5px 0;
+  color: var(--vt-c-white);
+
   background-color: var(--color-background-accent);
-  cursor: pointer;
+  border: none;
+  border-radius: 0 5px 5px 0;
+
   transition:
     background-color 0.3s ease-in-out,
     box-shadow 0.3s ease-in-out;
 
+  cursor: pointer;
+
   &:disabled {
-    opacity: 0.5;
     background-color: var(--vt-c-black);
+    opacity: 0.5;
+
     cursor: not-allowed;
   }
   &:hover,
@@ -50,10 +53,12 @@ defineProps({
 
 .loader {
   position: relative;
-  min-height: 100%;
+
   width: 45px;
-  border-radius: 0 5px 5px 0;
+  min-height: 100%;
+
   background-color: var(--color-border);
+  border-radius: 0 5px 5px 0;
 
   &::after {
     content: '';
@@ -61,14 +66,15 @@ defineProps({
     top: 50%;
     left: 50%;
 
-    translate: -50% -50%;
-
     width: 25px;
     height: 25px;
+
     border: 2px solid var(--vt-c-accent-color);
+    border-bottom-color: transparent;
     border-radius: 50%;
     opacity: 0.5;
-    border-bottom-color: transparent;
+
+    translate: -50% -50%;
     animation: rotation 1s linear infinite;
   }
 }

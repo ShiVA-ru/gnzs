@@ -30,6 +30,7 @@ defineProps({
 
   font-size: 14px;
   color: var(--vt-c-indigo);
+
   list-style: none;
 
   @media (max-width: 767px) {
@@ -47,6 +48,7 @@ defineProps({
 
 .entity__item {
   padding: 10px;
+
   border-radius: 5px;
   box-shadow: 5px 5px 10px var(--vt-c-shadow-color);
 }
@@ -57,7 +59,7 @@ defineProps({
 }
 
 .entity__id {
-  color: #666;
   font-size: 14px;
+  color: #666;
 }
 </style>

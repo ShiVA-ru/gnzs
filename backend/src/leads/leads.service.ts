@@ -12,9 +12,6 @@ export class LeadsService {
   async create() {
     const accessToken = await this.authService.getAccessToken();
 
-    if (!accessToken) {
-      throw new Error('Failed to get access token');
-    }
     const url = config.apiUrl + 'leads';
     try {
       const response = await this.apiService.post(url, accessToken);

@@ -20,6 +20,13 @@ const handleRequest = async () => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
   })
+
+  if (!response.ok) {
+    console.error('Error:', response.statusText)
+    isLoading.value = false
+    return
+  }
+
   const id = await response.json()
   createAnswer(requestValue.value, id)
   isLoading.value = false

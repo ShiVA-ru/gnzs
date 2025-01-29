@@ -62,11 +62,10 @@ const selectOption = (option: { name: string; route: string }) => {
 <style scoped>
 .dropdown {
   position: relative;
+  z-index: 100;
 
   display: inline-block;
   min-width: 140px;
-
-  z-index: 100;
 }
 
 .dropdown__toggle {
@@ -74,12 +73,14 @@ const selectOption = (option: { name: string; route: string }) => {
   padding: 10px 20px;
 
   font-size: 14px;
+  text-align: unset;
+
   background-color: var(--color-background-soft);
   border: 1px solid var(--color-border);
   border-right: none;
   border-radius: 5px 0 0 5px;
+
   cursor: pointer;
-  text-align: unset;
 }
 
 .dropdown__toggle--active {
@@ -94,8 +95,8 @@ const selectOption = (option: { name: string; route: string }) => {
   position: absolute;
   right: 10%;
 
-  transform-origin: center 47%;
   transition: transform 0.3s ease-in-out;
+  transform-origin: center 47%;
 }
 
 .dropdown__menu {
@@ -107,22 +108,26 @@ const selectOption = (option: { name: string; route: string }) => {
   padding: 0;
 
   font-size: 14px;
-  list-style: none;
   color: var(--color-text);
+
   background-color: var(--color-background-soft);
   border: 1px solid var(--color-border);
   border-radius: 0 0 5px 5px;
+
+  list-style: none;
 }
 
 .dropdown__item {
   padding: 10px 20px;
-  cursor: pointer;
 
   transition: background-color 0.1s ease-in-out;
+
+  cursor: pointer;
 }
 
 .dropdown__item:hover {
-  background-color: var(--color-background-accent);
   color: var(--vt-c-white);
+
+  background-color: var(--color-background-accent);
 }
 </style>
