@@ -1,17 +1,31 @@
 <script lang="ts" setup>
+import { useEntityStore } from '@/stores/EntityStore'
+
+const store = useEntityStore()
+
 defineProps({
   entities: {
     type: Array<{ name: string; id: number }>,
     required: true,
   },
 })
+
+const entityNameMap = store.entities.reduce(
+  (acc, entity) => {
+    acc[entity.route] = entity.name
+    return acc
+  },
+  {} as Record<string, string>,
+)
+
+console.log(entityNameMap)
 </script>
 
 <template>
   <h2 class="entity-title">Список запросов</h2>
   <ul class="entity">
     <li v-for="entity in entities" v-bind:key="entity.id" class="entity__item">
-      <h3 class="entity__name">{{ entity.name }}</h3>
+      <h3 class="entity__name">{{ entityNameMap[entity.name] }}</h3>
       <p class="entity__id">id: {{ entity.id }}</p>
     </li>
   </ul>
